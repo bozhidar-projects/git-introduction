@@ -4,6 +4,7 @@ import java.util.Comparator;
 import java.util.Set;
 import java.util.TreeSet;
 
+import person.BozhidarDimitrov;
 import person.DimitarApostolov;
 import person.Person;
 
@@ -30,6 +31,7 @@ public class PrintJavaAdvancedCourseStudents {
 	private static void addPeopleInClass(Set<Person> peopleInCourse) {
 		//Add your elements here
 		peopleInCourse.add(new DimitarApostolov());
+		peopleInCourse.add(new BozhidarDimitrov());
 	}
 	
 	private static void printPeople(Set<Person> people) {
