@@ -4,7 +4,6 @@ import java.util.Comparator;
 import java.util.Set;
 import java.util.TreeSet;
 
-import person.Bobi;
 import person.Person;
 
 public class PrintJavaAdvancedCourseStudents {
