@@ -5,6 +5,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import person.Person;
+import person.PetyrGeorgiev;
 
 public class PrintJavaAdvancedCourseStudents {
 
@@ -27,7 +28,7 @@ public class PrintJavaAdvancedCourseStudents {
 	}
 
 	private static void addPeopleInClass(Set<Person> peopleInCourse) {
-		
+		peopleInCourse.add(new PetyrGeorgiev());
 	}
 	
 	private static void printPeople(Set<Person> people) {
