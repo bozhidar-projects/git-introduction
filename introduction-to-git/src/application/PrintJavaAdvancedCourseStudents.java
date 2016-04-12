@@ -4,6 +4,7 @@ import java.util.Comparator;
 import java.util.Set;
 import java.util.TreeSet;
 
+import person.MariaNaydenova;
 import person.Person;
 
 public class PrintJavaAdvancedCourseStudents {
@@ -17,9 +18,9 @@ public class PrintJavaAdvancedCourseStudents {
 		public int compare(Person person1, Person person2) {
 			return person1.getName().compareTo(person2.getName());
 		}
-		
+
 	}
-	
+
 	public static void main(String[] args) {
 		Set<Person> peopleInCourse = new TreeSet<>(new ByNameAlphabeticallyAsc());
 		addPeopleInClass(peopleInCourse);
@@ -27,9 +28,9 @@ public class PrintJavaAdvancedCourseStudents {
 	}
 
 	private static void addPeopleInClass(Set<Person> peopleInCourse) {
-		
+		peopleInCourse.add(new MariaNaydenova());
 	}
-	
+
 	private static void printPeople(Set<Person> people) {
 		for (Person person : people) {
 			System.out.println("-----------------------------");
