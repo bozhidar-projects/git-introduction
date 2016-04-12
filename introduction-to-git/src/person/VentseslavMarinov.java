@@ -2,7 +2,7 @@ package person;
 
 public class VentseslavMarinov extends AbstractPerson{
 
-	public VentseslavMarinov(String name, int age) {
+	public VentseslavMarinov() {
 		super("Ventseslav Marinov", 36);
 	}
 
