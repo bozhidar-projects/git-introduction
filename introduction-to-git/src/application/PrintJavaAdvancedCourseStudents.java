@@ -28,7 +28,7 @@ public class PrintJavaAdvancedCourseStudents {
 	}
 
 	private static void addPeopleInClass(Set<Person> peopleInCourse) {
-		peopleInCourse.add(new Bobi());
+		
 	}
 	
 	private static void printPeople(Set<Person> people) {
