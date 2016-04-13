@@ -28,7 +28,6 @@ public class PrintJavaAdvancedCourseStudents {
 		printPeople(peopleInCourse);
 	}
 
-	//Testing comment
 	private static void addPeopleInClass(Set<Person> peopleInCourse) {
 		//Add your elements here
 		peopleInCourse.add(new DimitarApostolov());
