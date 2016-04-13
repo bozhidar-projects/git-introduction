@@ -21,7 +21,7 @@ import java.util.Set;
  */
 public class Airplane {
 	private static final String PLANE_NAME_SUFFIX = " Plane";
-
+	// Ventsi
 	private static final int TAKE_OFF_HEIGHT_STEP = 100;
 
 	/**
