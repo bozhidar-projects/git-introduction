@@ -14,4 +14,14 @@ package com.softacad.snippets.code.conventions;
  */
 public class Pilot {
 	
+	private QRH qrh;
+	
+	public boolean readQRH() {
+		if (qrh == null) {
+			return false;
+		}
+		
+		return qrh.checkAll();
+	}
+	
 }
