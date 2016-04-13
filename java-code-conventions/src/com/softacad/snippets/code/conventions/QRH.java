@@ -10,27 +10,44 @@ package com.softacad.snippets.code.conventions;
 
 /**
  * QRH stands for Quick Reference Handbook
- *
  */
 public class QRH {
-
-	boolean enginesOk;
+	private boolean enginesOk;
 	boolean flapsOk;
 	boolean problemsWithAilerons;
-	boolean coffeeOnTable;
+	private boolean coffeeOnTable;
 
 	/**
 	 *	check all QRH topics
 	 */
 	public boolean checkAll() {
-		if ((enginesOk==true)
+		boolean result = (areEnginesOk()==true)
 				&& (flapsOk == true)
 				&& (problemsWithAilerons == false)
-				&& (coffeeOnTable == true)) {
-			return true;
-		}
+				&& (isCoffeeOnTable() == true);
 
-		return false;
+		return result;
+	}
+
+	public boolean isTechnicalStuffOk() {
+		boolean technicalStuffOk = areEnginesOk() && flapsOk;
+		return technicalStuffOk;
+	}
+
+	public boolean areEnginesOk() {
+		return enginesOk;
+	}
+
+	public void setEnginesOk(boolean enginesOk) {
+		this.enginesOk = enginesOk;
+	}
+
+	public boolean isCoffeeOnTable() {
+		return coffeeOnTable;
+	}
+
+	public void setCoffeeOnTable(boolean coffeeOnTable) {
+		this.coffeeOnTable = coffeeOnTable;
 	}
 
 }

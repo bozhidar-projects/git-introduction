@@ -1,9 +1,9 @@
 /* class Airplane
- * 
+ *
  * version: 1.0
- * 
+ *
  * Date: 13.04.2016
- * 
+ *
  * This file is licensed under MIT
  */
 package com.softacad.snippets.code.conventions;
@@ -13,15 +13,12 @@ package com.softacad.snippets.code.conventions;
  *
  */
 public class Pilot {
-	
+
 	private QRH qrh;
-	
+
 	public boolean readQRH() {
-		if (qrh == null) {
-			return false;
-		}
-		
-		return qrh.checkAll();
+		boolean isQrhOk = (qrh == null) ? false : qrh.checkAll();
+		return isQrhOk;
 	}
-	
+
 }

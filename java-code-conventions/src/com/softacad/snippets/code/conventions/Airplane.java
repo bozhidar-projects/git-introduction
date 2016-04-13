@@ -20,10 +20,16 @@ import java.util.Set;
  *
  */
 public class Airplane {
+	private static final String PLANE_NAME_SUFFIX = " Plane";
+
+	private static final int TAKE_OFF_HEIGHT_STEP = 100;
+
 	/**
 	 * European type of airplane
 	 */
-	public static final String AIRBUS_TYPE = "Airbus";
+	public static final String AIRBUS_TYPE = "AirbusPlane";
+
+	public static final String AIR_JET_TYPE = "Air Jet";
 
 	/**
 	 * American type of airplane
@@ -43,6 +49,7 @@ public class Airplane {
 	private Passenger[] passangers;
 	private double crouiseFlightHeight;
 	private String planeType;
+	private double currentHeight;
 
 	private int seatsCapacity;
 
@@ -66,6 +73,8 @@ public class Airplane {
 		this.passangers = Arrays.copyOf(passangers, passangers.length);
 		this.crouiseFlightHeight = crouiseFlightHeight;
 		this.planeType = planeType;
+
+		this.currentHeight = 0;
 	}
 
 	/**
@@ -99,28 +108,40 @@ public class Airplane {
 	void takeOff() throws AirplaneException {
 
 		boolean thereIsAutoPilot = false;
-		if (firstPilot == null || secondPilot == null || !thereIsAutoPilot) {
+		if (getFirstPilot() == null || getSecondPilot() == null || !thereIsAutoPilot) {
 			throw new AirplaneException("A pilot is missing");
 		}
 
-		if (!firstPilot.readQRH()) {
+		if (!getFirstPilot().readQRH()) {
 			throw new AirplaneException("There is a technical issue");
 		}
 		System.out.println("QRH checklist ok!");
 
 		turnsEnginesOn();
+
+		String airplaneFullname = getPlaneType() + PLANE_NAME_SUFFIX;
+		for (int i = 0; i <= crouiseFlightHeight; i += TAKE_OFF_HEIGHT_STEP) {
+			currentHeight = i;
+			if (currentHeight > crouiseFlightHeight) {
+				currentHeight = crouiseFlightHeight;
+			}
+			System.out.println("Current height of " + airplaneFullname + " is: " + currentHeight);
+		}
+	}
+
+	void fly() {
+
 	}
 
 	/**
-	 * @return
-	 * 	all passengers in the plane
+	 * @return all passengers in the plane
 	 */
 	public Set<Passenger> getPassengers() {
 
-		//This is the result of the method
+		// This is the result of the method
 		Set<Passenger> result = new HashSet<>();
 		for (int i = 0; i < passangers.length; i++) {
-			if(passangers[i] != null) {
+			if (passangers[i] != null) {
 				result.add(passangers[i]);
 			}
 		}
@@ -129,7 +150,7 @@ public class Airplane {
 	}
 
 	public String getInfo() {
-		String planeInfo = "Plane Type:" + planeType + "\nCapacity: " + seatsCapacity;
+		String planeInfo = "Plane Type:" + getPlaneType() + "\nCapacity: " + seatsCapacity;
 		return planeInfo;
 	}
 
@@ -140,4 +161,23 @@ public class Airplane {
 		System.out.println("Turning the engines on");
 	}
 
+	public Pilot getFirstPilot() {
+		return firstPilot;
+	}
+
+	public void setFirstPilot(Pilot firstPilot) {
+		this.firstPilot = firstPilot;
+	}
+
+	public Pilot getSecondPilot() {
+		return secondPilot;
+	}
+
+	public void setSecondPilot(Pilot secondPilot) {
+		this.secondPilot = secondPilot;
+	}
+
+	public String getPlaneType() {
+		return planeType;
+	}
 }
