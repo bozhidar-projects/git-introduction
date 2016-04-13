@@ -23,6 +23,7 @@ public class Airplane {
 	private static final String PLANE_NAME_SUFFIX = " Plane";
 	//The step to take off with 2;
 	//The step to take off with;
+	// Ventsi
 	private static final int TAKE_OFF_HEIGHT_STEP = 100;
 
 	/**
