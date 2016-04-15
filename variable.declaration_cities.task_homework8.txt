@@ -1,0 +1,89 @@
+City sofia = new City("Sofia");
+City plovdiv = new City("Plovdiv");
+City dimitrovgrad = new City("Dimitrovgrad");
+City staraZagora = new City("Stara Zagora");
+City yambol = new City("Yambol");
+City burgas = new City("Burgas");
+City kardzhali = new City("Kardzhali");
+City harmanli = new City("Harmanli");
+City botevgrad = new City("Botevgrad");
+City kazanlak = new City("Kazanlak");
+City sliven = new City("Sliven");
+City varna = new City("Varna");
+City lovech = new City("Lovech");
+City velikoTarnovo = new City("Veliko Tarnovo");
+City shumen = new City("Shumen");
+City dobrich = new City("Dobrich");
+
+Road sofiaBotevgrad = new Road(sofia, botevgrad, 64);
+Road sofiaPlovdiv = new Road(sofia, plovdiv, 147);
+Road plovdivKardzhali = new Road(plovdiv, kardzhali, 95);
+Road kardzhaliHarmanli = new Road(kardzhali, harmanli, 78);
+Road harmanliDimitrovgrad = new Road (harmanli, dimitrovgrad, 28);
+Road harmanliBurgas = new Road(harmanli, burgas, 217);
+Road plovdivDimitrovgrad = new Road(plovdiv, dimitrovgrad, 93);
+Road dimitrovgradStaraZagora = new Road(dimitrovgrad, staraZagora, 46);
+Road staraZagoraYambol = new Road(staraZagora, yambol, 87);
+Road yambolBurgas = new Road(yambol, burgas, 92);
+Road botevgradKazanlak = new Road(botevgrad, kazanlak, 180);
+Road kazanlakStaraZagora = new Road(kazanlak, staraZagora, 35);
+Road kazanlakSliven = new Road(kazanlak, sliven, 86);
+Road slivenYambol = new Road(sliven, yambol, 28);
+Road botevgradLovech = new Road(botevgrad, lovech, 98);
+Road lovechVelikoTarnovo = new Road(lovech, velikoTarnovo, 84);
+Road kazanlakVelikoTarnovo = new Road(kazanlak, velikoTarnovo, 99);
+Road shumenVelikoTarnovo = new Road(shumen, velikoTarnovo, 142);
+Road shumenSLiven = new Road(shumen, sliven, 136);
+Road shumenDobrich = new Road(shumen, dobrich, 125);
+Road dobrichVarna = new Road(dobrich, varna, 52);
+Road shumenVarna = new Road(shumen, varna, 88);
+Road varnaBurgas = new Road(varna, burgas, 115);
+
+City[] sofiaNeighbors = {plovdiv, botevgrad};
+City[] plovdivNeighbors = {sofia, kardzhali, dimitrovgrad};
+City[] dimitrovgradNeighbors = {plovdiv, harmanli, staraZagora};
+City[] staraZagoraNeighbors = {dimitrovgrad, yambol, kazanlak};
+City[] yambolNeighbors = {sliven, staraZagora, burgas};
+City[] burgasNeighbors = {harmanli, yambol, varna};
+City[] kardzhaliNeighbors = {plovdiv, harmanli};
+City[] harmanliNeighbors = {kardzhali, dimitrovgrad, burgas};
+City[] botevgradNeighbors = {sofia, kazanlak, lovech};
+City[] kazanlakNeighbors = {botevgrad, staraZagora, velikoTarnovo, sliven};
+City[] slivenNeighbors = {kazanlak, shumen, yambol};
+City[] varnaNeighbors = {dobrich, shumen, burgas};
+City[] lovechNeighbors = {botevgrad, velikoTarnovo};
+City[] velikoTarnovoNeighbors = {lovech, kazanlak, shumen};
+City[] shumenNeighbors = {velikoTarnovo, sliven, varna, dobrich};
+City[] dobrichNeighbors = {varna, shumen};
+
+Road[] sofiaRoads = {sofiaPlovdiv, sofiaBotevgrad};
+Road[] plovdivRoads = {sofiaPlovdiv, plovdivKardzhali, plovdivDimitrovgrad};
+Road[] dimitrovgradRoads = {plovdivDimitrovgrad, harmanliDimitrovgrad, dimitrovgradStaraZagora};
+Road[] staraZagoraRoads = {dimitrovgradStaraZagora, staraZagoraYambol, kazanlakStaraZagora};
+Road[] yambolRoads = {slivenYambol, staraZagoraYambol, yambolBurgas};
+Road[] burgasRoads = {harmanliBurgas, yambolBurgas, varnaBurgas};
+Road[] kardzhaliRoads = {plovdivKardzhali, kardzhaliHarmanli};
+Road[] harmanliRoads = {kardzhaliHarmanli, harmanliDimitrovgrad, harmanliBurgas};
+Road[] botevgradRoads = {sofiaBotevgrad, botevgradKazanlak, botevgradLovech};
+Road[] kazanlakRoads = {botevgradKazanlak, kazanlakStaraZagora, kazanlakVelikoTarnovo, kazanlakSliven};
+Road[] slivenRoads = {kazanlakSliven, shumenSLiven, slivenYambol};
+Road[] varnaRoads = {dobrichVarna, shumenVarna, varnaBurgas};
+Road[] lovechRoads = {botevgradLovech, lovechVelikoTarnovo};
+Road[] velikoTarnovoRoads = {lovechVelikoTarnovo, kazanlakVelikoTarnovo, shumenVelikoTarnovo};
+Road[] shumenRoads = {shumenVelikoTarnovo, shumenSLiven, shumenVarna, shumenDobrich};
+Road[] dobrichRoads = {dobrichVarna, shumenDobrich};
+
+City[] allCities = {sofia, plovdiv, dimitrovgrad, staraZagora, yambol, burgas, kardzhali, harmanli,
+	botevgrad, kazanlak, sliven, varna, lovech, velikoTarnovo, shumen, dobrich};
+	
+City[][] allNeighbors = {sofiaNeighbors, plovdivNeighbors, dimitrovgradNeighbors, staraZagoraNeighbors,
+	yambolNeighbors, burgasNeighbors, kardzhaliNeighbors, harmanliNeighbors,
+	botevgradNeighbors, kazanlakNeighbors, slivenNeighbors, varnaNeighbors,
+	lovechNeighbors, velikoTarnovoNeighbors, shumenNeighbors, dobrichNeighbors};
+
+Road[][] allRoads = {sofiaRoads, plovdivRoads, dimitrovgradRoads, staraZagoraRoads,
+	yambolRoads, burgasRoads, kardzhaliRoads, harmanliRoads,
+	botevgradRoads, kazanlakRoads, slivenRoads, varnaRoads,
+	lovechRoads, velikoTarnovoRoads, shumenRoads, dobrichRoads};
+	
+	
