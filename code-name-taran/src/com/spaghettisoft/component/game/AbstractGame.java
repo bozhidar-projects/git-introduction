@@ -3,23 +3,20 @@ package com.spaghettisoft.component.game;
 import com.spaghettisoft.component.Component;
 
 public abstract class AbstractGame implements Component {
+    @Override
+    public void show() {
+        while (!isEnded()) {
+            drawGame();
+            processGame();
+        }
+        printEndGameMessage();
+    }
 
-	@Override
-	public void show() {
+    protected abstract void printEndGameMessage();
 
-		while (!isEnded()) {
-			drawGame();
-			processGame();
-		}
-		printEndGameMessage();
-	}
+    protected abstract void drawGame();
 
-	protected abstract void printEndGameMessage();
+    protected abstract boolean isEnded();
 
-	protected abstract void processGame();
-
-	protected abstract void drawGame();
-
-	protected abstract boolean isEnded();
-
+    protected abstract void processGame();
 }

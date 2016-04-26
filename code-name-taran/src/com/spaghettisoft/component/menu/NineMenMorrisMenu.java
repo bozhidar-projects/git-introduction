@@ -15,7 +15,10 @@
  */
 package com.spaghettisoft.component.menu;
 
-import com.spaghettisoft.component.Component;
+import com.spaghettisoft.component.menu.items.MenuItem;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author bobi
@@ -24,11 +27,16 @@ import com.spaghettisoft.component.Component;
  *         NineMenMorrisMenu
  *         Specific menu for Nine Men Morris game;
  */
-public class NineMenMorrisMenu implements Component {
+public class NineMenMorrisMenu extends Menu {
+    private static final String EXIT_OPTION_NAME = "Back";
 
-    @Override
-    public void show() {
-        System.out.println("Hello from Nine Men Morris !");
+    public NineMenMorrisMenu() {
+        super(createMenuItems(), EXIT_OPTION_NAME);
     }
 
+    private static List<MenuItem> createMenuItems() {
+        List<MenuItem> menuItems = new ArrayList<>();
+
+        return menuItems;
+    }
 }
