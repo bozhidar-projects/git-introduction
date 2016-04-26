@@ -29,28 +29,27 @@ import java.util.List;
  *         GamesMenu
  *         Menu that contains all games options in project taran.
  */
-public class GamesMenu implements Component {
+public class GamesMenu extends Menu {
+    private static final String TIC_TAC_TOE_OPTION_NAME = "Tic Tac Toe";
+    private static final String NINE_MEN_MORRIS_OPTION_NAME = "Nine Men Morris";
     private static final String EXIT_OPTION_NAME = "Back";
-    private Menu gamesMenu;
 
     public GamesMenu() {
+        super(createMenuItems(), EXIT_OPTION_NAME);
+    }
+
+    private static List<MenuItem> createMenuItems() {
         List<MenuItem> gamesMenuItems = new ArrayList<>();
 
         Component nineMenMorrisMenu = new NineMenMorrisMenu();
-        //TODO: after adding menu title in the menu class, rename SubmenuItem
-        //to "ComponentItem" and extend it SubmenuItem class that does not need
-        //label in the constructor but extracts it from the menu title.
-        //Interface Menu should be created that extends Component and adds
-        //method "getTitle"
-        MenuItem nineMenMorrisItem = new SubmenuItem("Nine Men Morris", nineMenMorrisMenu);
-
+        MenuItem nineMenMorrisItem = new SubmenuItem(NINE_MEN_MORRIS_OPTION_NAME, nineMenMorrisMenu);
         gamesMenuItems.add(nineMenMorrisItem);
-        gamesMenu = new Menu(gamesMenuItems, EXIT_OPTION_NAME);
-    }
 
-    @Override
-    public void show() {
-        gamesMenu.show();
+        Component ticTacToeMenu = new TicTacToeMenu();
+        MenuItem ticTacToeMenuItem = new SubmenuItem(TIC_TAC_TOE_OPTION_NAME, ticTacToeMenu);
+        gamesMenuItems.add(ticTacToeMenuItem);
+
+        return gamesMenuItems;
     }
 
 }
