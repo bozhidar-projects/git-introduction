@@ -15,7 +15,6 @@
  */
 package com.spaghettisoft.component.menu;
 
-import com.spaghettisoft.component.Component;
 import com.spaghettisoft.component.menu.items.CreditsMenuItem;
 import com.spaghettisoft.component.menu.items.MenuItem;
 import com.spaghettisoft.component.menu.items.SubmenuItem;
@@ -30,25 +29,21 @@ import java.util.List;
  *         MainMenu
  *         The main menu of project taran.
  */
-public class MainMenu implements Component {
-    private Menu mainMenu;
-
+public class MainMenu extends Menu {
     public MainMenu() {
+        super(createMenuItems());
+    }
+
+    private static List<MenuItem> createMenuItems() {
         List<MenuItem> menuItems = new ArrayList<>();
 
         GamesMenu gamesMenu = new GamesMenu();
-        SubmenuItem submenuItem = new SubmenuItem("Games", gamesMenu);
+        SubmenuItem submenuItem = new SubmenuItem("Select Game", gamesMenu);
         menuItems.add(submenuItem);
 
         MenuItem credits = new CreditsMenuItem();
         menuItems.add(credits);
 
-        mainMenu = new Menu(menuItems);
+        return menuItems;
     }
-
-    @Override
-    public void show() {
-        mainMenu.show();
-    }
-
 }

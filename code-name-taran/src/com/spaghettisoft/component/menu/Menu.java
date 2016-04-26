@@ -70,14 +70,14 @@ public class Menu implements Component {
     }
 
     private void printMenuOptions() {
-    	System.out.println("*********************************");
+        System.out.println("============================");
         System.out.println("0. " + exitOptionName);
         for (int i = 0; i < menuItems.size(); i++) {
             int menuOption = i + 1;
             MenuItem menuItem = menuItems.get(i);
             System.out.println(menuOption + ". " + menuItem.getLabel());
         }
-        System.out.println("*********************************");
+        System.out.println("============================");
     }
 
 }
