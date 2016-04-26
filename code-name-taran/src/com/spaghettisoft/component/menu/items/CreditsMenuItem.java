@@ -10,6 +10,7 @@ public class CreditsMenuItem extends AbstractMenuItem {
 
     @Override
     public void select() {
+        System.out.println(TITLE + ":");
         for (String name : AUTHORS) {
             System.out.println(name);
         }
