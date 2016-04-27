@@ -12,6 +12,7 @@ public abstract class AbstractGame implements Component {
 		printEndGameMessage();
 	}
 
+
 	protected abstract boolean isEnded();
 
 	protected abstract void drawGame();
