@@ -32,7 +32,7 @@ import java.util.List;
 public class GamesMenu extends Menu {
     private static final String TIC_TAC_TOE_OPTION_NAME = "Tic Tac Toe";
     private static final String NINE_MEN_MORRIS_OPTION_NAME = "Nine Men Morris";
-    private static final String CONNECT_THE_FOUR_NAME = "Connect The Four";
+    private static final String CONNECT_THE_FOUR_OPTION_NAME = "Connect The Four";
     private static final String EXIT_OPTION_NAME = "Back";
 
     public GamesMenu() {
@@ -49,6 +49,10 @@ public class GamesMenu extends Menu {
         Component ticTacToeMenu = new TicTacToeMenu();
         MenuItem ticTacToeMenuItem = new SubmenuItem(TIC_TAC_TOE_OPTION_NAME, ticTacToeMenu);
         gamesMenuItems.add(ticTacToeMenuItem);
+        
+        Component connectTheFourMenu = new ConnectTheFourMenu(); 
+        MenuItem connectTheFourItem = new SubmenuItem(CONNECT_THE_FOUR_OPTION_NAME, connectTheFourMenu);
+        gamesMenuItems.add(connectTheFourItem);
 
         return gamesMenuItems;
     }
