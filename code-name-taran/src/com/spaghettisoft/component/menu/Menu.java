@@ -19,6 +19,7 @@ import com.spaghettisoft.component.Component;
 import com.spaghettisoft.component.menu.items.MenuItem;
 import com.spaghettisoft.globals.StaticObjects;
 
+import java.io.IOException;
 import java.util.List;
 
 //TODO: add menu title
@@ -58,7 +59,12 @@ public class Menu implements Component {
                 break;
             }
             MenuItem selectedMenuItem = menuItems.get(option - 1);
-            selectedMenuItem.select();
+            try {
+				selectedMenuItem.select();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
         } while (true);
     }
 

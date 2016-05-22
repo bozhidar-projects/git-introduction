@@ -7,7 +7,7 @@ public class Player {
 	private String name;
 	private static final char LIFE = '@';
 	private static final char DEAD = 'X';
-	private static final int NUMBER_OF_LIFES = 10;
+	private static final int NUMBER_OF_LIFES = 6;
 	private int lifeCounter;
 	private char[] lifes = new char[NUMBER_OF_LIFES];
 	private boolean myTurn = false;
@@ -34,7 +34,7 @@ public class Player {
 				break;
 			}
 		}
-		return c;
+		return Character.toLowerCase(c);
 	}
 
 	public boolean isDead() {

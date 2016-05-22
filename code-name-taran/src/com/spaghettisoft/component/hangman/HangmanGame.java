@@ -53,17 +53,18 @@ public class HangmanGame extends AbstractGame {
 	@Override
 	protected void processGame() {
 		System.out.println("Let's play Hangman : )");
+		drawGame();
 		System.out.println("The super-secret word is : ");
 		printMaskWord();
+		drawGame();
 		setInitialTurn();
 		while (true) {
 			Player player = checkTurn();
 			System.out.println("It's " + player.getName() + " turn. Please enter a letter : ");
 			Character c = player.guess();
-			System.out.println(player.getName() + " your try is " + c);
+			System.out.println(player.getName() + " your try is " + Character.toUpperCase(c));
 			checkWord(c, player);
 			if (hasWin()) {
-				System.out.println("The word is " + word.getTheWord());
 				System.out.println("Player " + player.getName() + " has won the game !");
 				break;
 			}
@@ -77,7 +78,7 @@ public class HangmanGame extends AbstractGame {
 
 	private void printMaskWord() {
 		for (char c : maskWord) {
-			System.out.print(c + " ");
+			System.out.print(Character.toUpperCase(c) + " ");
 		}
 		System.out.println();
 
@@ -110,15 +111,18 @@ public class HangmanGame extends AbstractGame {
 			for (int i = 0; i < w.length(); i++) {
 				if (w.charAt(i) == c) {
 					unmask(i, c);
-					System.out.println(c + " is in the word !");
+					System.out.println(Character.toUpperCase(c) + " is in the word !");
 					printMaskWord();
 				}
 			}
 		} else {
-			System.out.println(c + " is not in the word !");
+			System.out.println(Character.toUpperCase(c) + " is not in the word !");
 			p.munisLife();
+			drawGame();
 			System.out.println(p.getName() + "'s lifes left : ");
 			p.printLife();
+			drawGame();
+			printMaskWord();
 		}
 	}
 
@@ -129,9 +133,8 @@ public class HangmanGame extends AbstractGame {
 
 	@Override
 	protected void printEndGameMessage() {
-		System.out.println("You are dead hahaha muhahaha! Hangman!");
-		System.out.println("The most secret word is : " + word.getTheWord());
-
+		System.out.println("The word is " + word.getTheWord().toUpperCase());
+		System.out.println("Game Over! You can play again!");
 	}
 
 	@Override
@@ -144,6 +147,6 @@ public class HangmanGame extends AbstractGame {
 	@Override
 	protected boolean isEnded() {
 		// TODO Auto-generated method stub
-		return (player1.isDead() || player2.isDead());
+		return (player1.isDead() || player2.isDead() || hasWin());
 	}
 }
