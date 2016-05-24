@@ -83,7 +83,12 @@ public class BoardState {
             }
         }
 
-        gameEngine();
+        try {
+            gameEngine();
+        } catch (IllegalMoveException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 
         // String PlayerPlace = "A";
         // String poolType = BoardTile.WHITE;
@@ -140,9 +145,9 @@ public class BoardState {
 
         BoardTile tileToPlace = getBoardTileByPlace(place);
 
-        if (poolType.equals(BoardTile.WHITE)) {
+        if (poolType.equals(BoardTile.WHITE) && (!checkForExistance(place))) {
             tileToPlace.addWhitePool();
-        } else if (poolType.equals(BoardTile.BLACK)) {
+        } else if (poolType.equals(BoardTile.BLACK) && (!checkForExistance(place))) {
             tileToPlace.addBlackPool();
         } else {
             tileToPlace.emptyTile();
@@ -289,7 +294,7 @@ public class BoardState {
         }
     }
 
-    private static void gameEngine() {
+    private static void gameEngine() throws IllegalMoveException {
         drawBoard();
 
         for (int i = 1; i < 19; i++) {
@@ -343,6 +348,9 @@ public class BoardState {
                 }
             }
             drawBoard();
+            if (gameNotEnded == false) {
+                break;
+            }
         }
     }
 
