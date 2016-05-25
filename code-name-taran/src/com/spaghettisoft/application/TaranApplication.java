@@ -23,7 +23,7 @@ import com.spaghettisoft.globals.StaticObjects;
  * @author bobi
  *
  *         TaranApplication
- *         The main class from which the applicaiton starts
+ *         The main class from which the application starts
  */
 public class TaranApplication {
 
