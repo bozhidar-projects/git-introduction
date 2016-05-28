@@ -1,54 +1,37 @@
 package com.spaghettisoft.component.connectthefour;
 
-import java.util.PriorityQueue;
-import java.util.Queue;
-import java.util.Scanner;
-import com.spaghettisoft.component.Component;
 import com.spaghettisoft.component.game.AbstractGame;
+import com.spaghettisoft.globals.StaticObjects;
 
 public class ConnectTheFour extends AbstractGame {
-	
+
 	private Grid grid;
-	
-	public ConnectTheFour(Grid grid) {
-		this.grid = grid;
+	private boolean playerChange;
+
+	public ConnectTheFour() {
+		initialize();
 	}
 
-	@Override
-	public void show() {
-
-	}
-	
 	@Override
 	protected void printEndGameMessage() {
-		String O = "O";
-		String X = "X";
-		
-	}
-	
-	protected void printGameMessage(String ch) {
-		if (isEnded()) {
-			System.out.println("No winner yet!");
+		drawGame();
+		if (playerChange) {
+			System.out.println("We have a winner! : Player " + 1);
 		} else {
-			if (ch.contains("X")) {
-				System.out.println("We have a winner! : Player " + 1);
-//				System.out.println(container.toString());
-			} else {
-				System.out.println("We have a winner! : Player " + 2);
-//				System.out.println(container.toString());
-			}
+			System.out.println("We have a winner! : Player " + 2);
 		}
+		initialize();
 	}
 
 	@Override
 	protected void drawGame() {
-		for (int i = 0; i < grid.columnsLength(); i++) {
-			for (int j = 0; j < grid.rowsLength() ; j++) {
+		for (int i = 0; i < grid.rowsLength(); i++) {
+			for (int j = 0; j < grid.columnsLength(); j++) {
 				System.out.print(grid.getElement(i, j) + " | ");
 			}
 			System.out.println();
 		}
-	
+
 	}
 
 	@Override
@@ -59,51 +42,34 @@ public class ConnectTheFour extends AbstractGame {
 
 	@Override
 	protected void processGame() {
-		 Scanner input = new Scanner(System.in);
-		 boolean playerChange = true;
-         while(!isEnded()) {
-        	 if (playerChange) {
-        		 System.out.print("Player 1 - Choose a column: ");
-     		     int column = input.nextInt();
-     		     grid.dropCoin(column, "X"); 
-     		     printGameMessage("X");
-     		     playerChange = false;
-        	 } else {
-        		 System.out.print("Player 2 - Choose a column: ");
-     		     int column = input.nextInt();
-     		     grid.dropCoin(column, "O");
-     		     printGameMessage("O");
-     		     playerChange = true;	 
-        	 }	
-		}
-        input.close();
+			if (playerChange) {
+				System.out.print("Player 1 - Choose a column: ");
+				int column = StaticObjects.scanner.nextInt();
+				grid.dropCoin(column, "X");
+			} else {
+				System.out.print("Player 2 - Choose a column: ");
+				int column = StaticObjects.scanner.nextInt();
+				grid.dropCoin(column, "O");
+			}
+			playerChange = !playerChange;
 	}
 
-	public static void main(String[] args) {
-
-		Grid grid = new Grid();
-		
-		ConnectTheFour ctf = new ConnectTheFour(grid);
+	public void initialize() {
+		grid = new Grid();
 
 		String[][] arr = { { " ", " ", " ", " ", " ", " ", " " },
-				           { " ", " ", " ", " ", " ", " ", " " },
-				           { " ", " ", " ", " ", " ", " ", " " },
-				           { " ", " ", " ", " ", " ", " ", " " },
-				           { " ", " ", " ", " ", " ", " ", " " },
-				           { " ", " ", " ", " ", " ", " ", " " } };
+				{ " ", " ", " ", " ", " ", " ", " " },
+				{ " ", " ", " ", " ", " ", " ", " " },
+				{ " ", " ", " ", " ", " ", " ", " " },
+				{ " ", " ", " ", " ", " ", " ", " " },
+				{ " ", " ", " ", " ", " ", " ", " " } };
 
 		for (int i = 0; i < grid.rowsLength(); i++) {
 			for (int j = 0; j < grid.columnsLength(); j++) {
 				grid.setElement(i, j, arr[i][j]);
 			}
 		}
-		
-		ctf.processGame();
-		
-		
 
-		
-	
-
+		playerChange = true;
 	}
 }
