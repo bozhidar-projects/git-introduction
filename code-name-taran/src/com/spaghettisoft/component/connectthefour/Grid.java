@@ -4,21 +4,33 @@ public class Grid {
 
 	private String[][] grid;
 	private int symbolRow = 0;
+	private boolean isColumnFull;
 
 	public Grid() {
 		String[][] offset = new String[6][7];
 		this.grid = offset;
 	}
+	
+	public boolean isColumnFull() {
+		return isColumnFull;
+	}
 
-	public void dropCoin(int n, String ch) {
+	public void dropCoin(int n, String ch, boolean playerchange) {
 		boolean flag = false;
+		isColumnFull = false;
 		int i = grid.length - 1;
-		while(flag == false) {
-			if (grid[i][n].contains("X") || grid[i][n].contains("O")){
-				i--;
+		while (flag == false) {
+			if (i < 0) {
+				System.out.println("You cannot drop here, the column is full, choose other!");
+				isColumnFull = true;
+				break;
 			} else {
-				grid[i][n] = ch;
-				flag = true;
+				if (grid[i][n].contains("X") || grid[i][n].contains("O")) {
+					i--;
+				} else {
+					grid[i][n] = ch;
+					flag = true;
+				}
 			}
 		}
 	}

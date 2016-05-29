@@ -31,7 +31,6 @@ public class ConnectTheFour extends AbstractGame {
 			}
 			System.out.println();
 		}
-
 	}
 
 	@Override
@@ -42,16 +41,33 @@ public class ConnectTheFour extends AbstractGame {
 
 	@Override
 	protected void processGame() {
-			if (playerChange) {
+		int column = 0;
+		if (playerChange) {
+			do {
 				System.out.print("Player 1 - Choose a column: ");
-				int column = StaticObjects.scanner.nextInt();
-				grid.dropCoin(column, "X");
-			} else {
-				System.out.print("Player 2 - Choose a column: ");
-				int column = StaticObjects.scanner.nextInt();
-				grid.dropCoin(column, "O");
+				column = StaticObjects.scanner.nextInt();
+				if (column < 0 || column > 6){
+					System.out.println("Please enter valid option between 0 and 6!");
+				}
+			} while (column < 0 || column > 6);
+			grid.dropCoin(column, "X", playerChange);
+			if (grid.isColumnFull()) {
+				playerChange = !playerChange;
 			}
-			playerChange = !playerChange;
+		} else {
+			do {
+				System.out.print("Player 2 - Choose a column: ");
+				column = StaticObjects.scanner.nextInt();
+				if (column < 0 || column > 6){
+					System.out.println("Please enter valid option between 0 and 6!");
+				}
+			} while (column < 0 || column > 6);
+			grid.dropCoin(column, "O", playerChange);
+			if (grid.isColumnFull()) {
+				playerChange = !playerChange;
+			}
+		}
+		playerChange = !playerChange;
 	}
 
 	public void initialize() {
