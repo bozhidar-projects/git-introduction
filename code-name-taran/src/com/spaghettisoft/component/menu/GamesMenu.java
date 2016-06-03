@@ -30,13 +30,14 @@ import com.spaghettisoft.component.menu.items.SubmenuItem;
  */
 public class GamesMenu extends Menu {
 
+
 	private static final String BELOTE_OPTION_NAME = "Belote";
 	private static final String TIC_TAC_TOE_OPTION_NAME = "Tic Tac Toe";
 	private static final String NINE_MEN_MORRIS_OPTION_NAME = "Nine Men Morris";
 	private static final String HANGMAN_OPTION_NAME = "Hangman";
 	private static final String CHECKERS_OPTION_NAME = "Checkers";
-
-	private static final String EXIT_OPTION_NAME = "Back";
+	private static final String DONT_GET_ANGRY_OPTION_NAME = "Don't Get Angry";
+    private static final String EXIT_OPTION_NAME = "Back";
 
 	public GamesMenu() {
 		super(createMenuItems(), EXIT_OPTION_NAME);
@@ -68,7 +69,11 @@ public class GamesMenu extends Menu {
 		MenuItem checkersMenuItem = new SubmenuItem(CHECKERS_OPTION_NAME, checkersManu);
 		gamesMenuItems.add(checkersMenuItem);
 
-		return gamesMenuItems;
-	}
+        Component dontGetAngryMenu = new DontGetAngryMenu();
+        MenuItem dontGetAngryMenuItem = new SubmenuItem(DONT_GET_ANGRY_OPTION_NAME, dontGetAngryMenu);
+        gamesMenuItems.add(dontGetAngryMenuItem);
+        
+        return gamesMenuItems;
+    }
 
 }
