@@ -3,9 +3,10 @@ package com.spaghettisoft.component.ninemenmorris;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.spaghettisoft.component.game.AbstractGame;
 import com.spaghettisoft.globals.StaticObjects;
 
-public class BoardState {
+public class BoardState extends AbstractGame {
 
     static Map<String, String> mapPossMovements = new HashMap<>();
 
@@ -21,8 +22,9 @@ public class BoardState {
             { "Q", "T", "W" }, { "J", "K", "L" }, { "A", "D", "G" }, { "C", "F", "I" }, { "X", "U", "R" },
             { "V", "S", "P" }, };
 
-    public static void main(String[] args) {
+    private static int turnNumber;
 
+    public BoardState() {
         mapPossMovements.put("A", "BDJ");
         mapPossMovements.put("B", "ACE");
         mapPossMovements.put("C", "BFO");
@@ -75,6 +77,10 @@ public class BoardState {
         boardArrays[6][3] = new BoardTile("W");
         boardArrays[6][6] = new BoardTile("X");
 
+        initialize();
+    }
+
+    private static void initialize() {
         for (int i = 0; i < boardArrays.length; i++) {
             for (int j = 0; j < boardArrays[i].length; j++) {
                 if (boardArrays[i][j] == null) {
@@ -82,66 +88,10 @@ public class BoardState {
                 }
             }
         }
-
-        try {
-            gameEngine();
-        } catch (IllegalMoveException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
-        // String PlayerPlace = "A";
-        // String poolType = BoardTile.WHITE;
-        // placePool(poolType, PlayerPlace);
-        //
-        // String PlayerPlace2 = "D";
-        // String poolType2 = BoardTile.WHITE;
-        // placePool(poolType2, PlayerPlace2);
-        //
-        // String PlayerPlace3 = "G";
-        // String poolType3 = BoardTile.WHITE;
-        // placePool(poolType3, PlayerPlace3);
-        //
-        // String PlayerPlace4 = "B";
-        // String poolType4 = BoardTile.WHITE;
-        // placePool(poolType4, PlayerPlace4);
-        //
-        // String PlayerPlace5 = "C";
-        // String poolType5 = BoardTile.WHITE;
-        // placePool(poolType5, PlayerPlace5);
-        //
-        // String PlayerPlace6 = "J";
-        // String poolType6 = BoardTile.BLACK;
-        // placePool(poolType6, PlayerPlace6);
-        //
-        // String PlayerPlace7 = "V";
-        // String poolType7 = BoardTile.BLACK;
-        // placePool(poolType7, PlayerPlace7);
-
-        // movePool("C", "B");
-
-        // deletePool("B");
-
-        // checkForMills("A");
-
-        // checkForFlying("E", "H");
-
-        // drawBoard();
+        turnNumber = 1;
     }
 
-    private static void drawBoard() {
-
-        for (int i = 0; i < boardArrays.length; i++) {
-            for (int j = 0; j < boardArrays[i].length; j++) {
-                System.out.print(boardArrays[i][j].getVisalization());
-            }
-            System.out.println();
-            System.out.println();
-        }
-        System.out.println("===================================");
-    }
-
-    private static void placePool(String poolType, String place) {
+    private void placePool(String poolType, String place) {
 
         BoardTile tileToPlace = getBoardTileByPlace(place);
 
@@ -154,13 +104,13 @@ public class BoardState {
         }
         placedPools++;
 
-        drawBoard();
+        // drawGame();
 
         checkForMills(place);
 
     }
 
-    private static void movePool(String placeFrom, String placeTo) throws IllegalMoveException {
+    private void movePool(String placeFrom, String placeTo) throws IllegalMoveException {
 
         BoardTile tileFromPlace = getBoardTileByPlace(placeFrom);
         BoardTile tileToPlace = getBoardTileByPlace(placeTo);
@@ -169,7 +119,7 @@ public class BoardState {
 
             tileToPlace.setPoolType(tileFromPlace.getPoolType());
             tileFromPlace.emptyTile();
-            drawBoard();
+            // drawGame();
         } else {
             throw new IllegalMoveException();
         }
@@ -192,20 +142,20 @@ public class BoardState {
         return notFlying;
     }
 
-    private static void deletePool(String placeFrom) {
+    private void deletePool(String placeFrom) {
         BoardTile tileFromPlace = getBoardTileByPlace(placeFrom);
 
         String deletedPoolType = tileFromPlace.getPoolType();
 
         tileFromPlace.emptyTile();
 
-        drawBoard();
+        drawGame();
 
         checkForEndOfGame(deletedPoolType);
 
     }
 
-    private static boolean checkForMills(String place) {
+    private boolean checkForMills(String place) {
 
         boolean foundMills = false;
         int millsCounter = 0;
@@ -220,6 +170,7 @@ public class BoardState {
                         && currentPoolType == (getBoardTileByPlace(mills[i][2])).getPoolType()) {
 
                     foundMills = true;
+                    drawGame();
                     millsCounter++;
                     System.out.println("Mill found at " + mills[i][0] + mills[i][1] + mills[i][2] + " !");
                     // System.out.println(foundMills);
@@ -229,7 +180,7 @@ public class BoardState {
         if (foundMills) { // Calls "mills" times deletePool();
             for (int i = 0; i < millsCounter; i++) {
                 System.out.println("Enter an oponent place to delete: ");
-                String placeToDelete = StaticObjects.scanner.nextLine();
+                String placeToDelete = StaticObjects.scanner.nextLine().toUpperCase();
                 // System.out.println(placeToDelete);
                 deletePool(placeToDelete);
             }
@@ -265,7 +216,7 @@ public class BoardState {
                     }
                 }
             }
-            System.out.println("White pools" + poolCounterOponent);
+            // System.out.println("White pools" + poolCounterOponent);
             if ((poolCounterOponent < 3) && (placedPools == 18)) {
                 gameNotEnded = false;
                 System.out
@@ -282,7 +233,7 @@ public class BoardState {
                     }
                 }
             }
-            System.out.println("Black pools " + poolCounterOponent);
+            // System.out.println("Black pools " + poolCounterOponent);
             if ((poolCounterOponent < 3) && (placedPools == 18)) {
                 gameNotEnded = false;
                 System.out
@@ -294,63 +245,85 @@ public class BoardState {
         }
     }
 
-    private static void gameEngine() throws IllegalMoveException {
-        drawBoard();
+    @Override
+    protected void drawGame() {
 
-        for (int i = 1; i < 19; i++) {
-
-            if (i % 2 == 0) {
-                System.out.println("BLACK : Enter place: ");
-                String place = StaticObjects.scanner.nextLine();
-                placePool(BoardTile.BLACK, place);
-            } else {
-                System.out.println("WHITE : Enter place: ");
-                String place = StaticObjects.scanner.nextLine();
-                placePool(BoardTile.WHITE, place);
+        for (int i = 0; i < boardArrays.length; i++) {
+            for (int j = 0; j < boardArrays[i].length; j++) {
+                System.out.print(boardArrays[i][j].getVisalization());
             }
-            drawBoard();
+            System.out.println();
+            System.out.println();
         }
+        System.out.println("===================================");
+    }
 
-        for (int j = 1; j < 1000; j++) {
+    @Override
+    protected void printEndGameMessage() {
+        drawGame();
+        initialize();
+    }
 
-            if (j % 2 == 0) {
-                while (true) {
-                    System.out.println("BLACK : Move FROM place: ");
-                    String placeFrom = StaticObjects.scanner.nextLine();
+    @Override
+    protected boolean isEnded() {
+        return !gameNotEnded;
+    }
 
-                    System.out.println("BLACK : Move TO place: ");
-                    String placeTo = StaticObjects.scanner.nextLine();
+    @Override
+    protected void processGame() {
+        if (turnNumber < 19) {
+            processPlacePool(turnNumber);
+        } else {
+            processMovePool(turnNumber);
+        }
+        turnNumber++;
+    }
 
-                    try {
-                        movePool(placeFrom, placeTo);
-                        break;
+    private void processMovePool(int j) {
+        if (j % 2 == 0) {
+            while (true) {
+                System.out.println("BLACK : Move FROM place: ");
+                String placeFrom = StaticObjects.scanner.nextLine().toUpperCase();
 
-                    } catch (IllegalMoveException e) {
-                        System.out.println("Wrong move. Please try again.");
-                    }
+                System.out.println("BLACK : Move TO place: ");
+                String placeTo = StaticObjects.scanner.nextLine().toUpperCase();
 
-                }
+                try {
+                    movePool(placeFrom, placeTo);
+                    break;
 
-            } else {
-
-                while (true) {
-                    System.out.println("WHITE : Move FROM place: ");
-                    String placeFrom = StaticObjects.scanner.nextLine();
-
-                    System.out.println("WHITE : Move TO place: ");
-                    String placeTo = StaticObjects.scanner.nextLine();
-                    try {
-                        movePool(placeFrom, placeTo);
-                        break;
-                    } catch (IllegalMoveException e) {
-                        System.out.println("Wrong move. Please try again.");
-                    }
+                } catch (IllegalMoveException e) {
+                    System.out.println("Wrong move. Please try again.");
                 }
             }
-            drawBoard();
-            if (gameNotEnded == false) {
-                break;
+
+        } else {
+
+            while (true) {
+                System.out.println("WHITE : Move FROM place: ");
+                String placeFrom = StaticObjects.scanner.nextLine().toUpperCase();
+
+                System.out.println("WHITE : Move TO place: ");
+                String placeTo = StaticObjects.scanner.nextLine().toUpperCase();
+                try {
+                    movePool(placeFrom, placeTo);
+                    break;
+                } catch (IllegalMoveException e) {
+                    System.out.println("Wrong move. Please try again.");
+                }
             }
+        }
+    }
+
+    private void processPlacePool(int i) {
+        if (i % 2 == 0) {
+            System.out.println("BLACK : Enter place: ");
+            String place = StaticObjects.scanner.nextLine().toUpperCase();
+            placePool(BoardTile.BLACK, place);
+        } else {
+            System.out.println("WHITE : Enter place: ");
+            String place = StaticObjects.scanner.nextLine().toUpperCase();
+            placePool(BoardTile.WHITE, place);
         }
     }
 
@@ -367,4 +340,5 @@ public class BoardState {
 
         return poolAlreadyExists;
     }
+
 }

@@ -22,12 +22,12 @@ import com.spaghettisoft.globals.StaticObjects;
 /**
  * @author bobi
  *
- *         TaranApplication
- *         The main class from which the applicaiton starts
+ *         TaranApplication The main class from which the applicaiton starts
  */
 public class TaranApplication {
 
     public static void main(String[] args) {
+
         Component menu = new MainMenu();
         menu.show();
 
