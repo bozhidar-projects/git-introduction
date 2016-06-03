@@ -32,6 +32,7 @@ import java.util.List;
 public class GamesMenu extends Menu {
     private static final String TIC_TAC_TOE_OPTION_NAME = "Tic Tac Toe";
     private static final String NINE_MEN_MORRIS_OPTION_NAME = "Nine Men Morris";
+    private static final String HANGMAN_OPTION_NAME = "Hangman";
     private static final String EXIT_OPTION_NAME = "Back";
 
     public GamesMenu() {
@@ -48,6 +49,10 @@ public class GamesMenu extends Menu {
         Component ticTacToeMenu = new TicTacToeMenu();
         MenuItem ticTacToeMenuItem = new SubmenuItem(TIC_TAC_TOE_OPTION_NAME, ticTacToeMenu);
         gamesMenuItems.add(ticTacToeMenuItem);
+        
+        Component hangmenMenu = new HangmanMenu();
+        MenuItem hangMenuItem = new SubmenuItem(HANGMAN_OPTION_NAME, hangmenMenu);
+        gamesMenuItems.add(hangMenuItem);
 
         return gamesMenuItems;
     }
