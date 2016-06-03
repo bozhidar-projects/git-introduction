@@ -15,6 +15,8 @@
  */
 package com.spaghettisoft.component.menu.items;
 
+import java.io.IOException;
+
 /**
  * @author bobi
  *
@@ -22,7 +24,7 @@ package com.spaghettisoft.component.menu.items;
  *         MenuItem
  */
 public interface MenuItem {
-    void select();
+    void select() throws IOException;
 
     String getLabel();
 }

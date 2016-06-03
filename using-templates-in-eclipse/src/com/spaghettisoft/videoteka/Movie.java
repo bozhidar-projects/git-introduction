@@ -1,8 +1,8 @@
-/* Component
+/* Movie
  *
  * version 1.0
  *
- * Apr 20, 2016
+ * Apr 19, 2016
  *
  * The MIT License (MIT)
  * Copyright (c) <2016> <spaghettisoft LTD>
@@ -13,26 +13,32 @@
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package com.spaghettisoft.application;
+package com.spaghettisoft.videoteka;
 
-import com.spaghettisoft.component.Component;
-import com.spaghettisoft.component.menu.MainMenu;
-import com.spaghettisoft.globals.StaticObjects;
+import java.util.List;
+import java.util.Set;
 
 /**
  * @author bobi
  *
- *         TaranApplication The main class from which the applicaiton starts
+ *
+ *         Movie
  */
-public class TaranApplication {
+public class Movie {
+    private List<String> names;
+    private Set<String> actors;
+    private String name;
 
     public static void main(String[] args) {
+        int[] item1 = { 1, 2, 4, 5, 6 };
+        int[] item2 = { 0, 5, 3, 2, 1 };
 
-    	System.out.println("Welcome to the Magic Games of Taran!\n********Do you dare?********");
-        Component menu = new MainMenu();
-        menu.show();
-
-        StaticObjects.scanner.close();
+        mergeArrays(item1, item2);
     }
 
+    private static void mergeArrays(int[] item1, int[] item2) {
+        int[] result = new int[item1.length + item2.length];
+        System.arraycopy(item1, 0, result, 0, item1.length);
+        System.arraycopy(item2, 0, result, item1.length, item2.length);
+    }
 }

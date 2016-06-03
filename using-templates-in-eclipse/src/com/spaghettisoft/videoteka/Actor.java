@@ -1,9 +1,9 @@
-/* Component
- *
+/* Actor
+ * 
  * version 1.0
  *
- * Apr 20, 2016
- *
+ * Apr 19, 2016
+ * 
  * The MIT License (MIT)
  * Copyright (c) <2016> <spaghettisoft LTD>
  *
@@ -13,26 +13,14 @@
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package com.spaghettisoft.application;
-
-import com.spaghettisoft.component.Component;
-import com.spaghettisoft.component.menu.MainMenu;
-import com.spaghettisoft.globals.StaticObjects;
+package com.spaghettisoft.videoteka;
 
 /**
  * @author bobi
  *
- *         TaranApplication The main class from which the applicaiton starts
+ *
+ * Actor
  */
-public class TaranApplication {
-
-    public static void main(String[] args) {
-
-    	System.out.println("Welcome to the Magic Games of Taran!\n********Do you dare?********");
-        Component menu = new MainMenu();
-        menu.show();
-
-        StaticObjects.scanner.close();
-    }
+public class Actor {
 
 }
