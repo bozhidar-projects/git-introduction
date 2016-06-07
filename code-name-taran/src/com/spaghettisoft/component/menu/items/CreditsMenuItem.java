@@ -1,7 +1,8 @@
 package com.spaghettisoft.component.menu.items;
 
 public class CreditsMenuItem extends AbstractMenuItem {
-    private static final String[] AUTHORS = { "Ana", "Ventsi", "Emil", "Martin", "Georgi" };
+    private static final String[] AUTHORS = { "Ana", "Ventsi", "Emil", "Martin",
+            "Georgi", "Kristian" };
     private static final String TITLE = "Credits";
 
     public CreditsMenuItem() {
