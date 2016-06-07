@@ -16,6 +16,7 @@
 package com.spaghettisoft.component.menu;
 
 import com.spaghettisoft.component.Component;
+import com.spaghettisoft.component.menu.chessmenu.ChessMenu;
 import com.spaghettisoft.component.menu.items.MenuItem;
 import com.spaghettisoft.component.menu.items.SubmenuItem;
 
@@ -33,6 +34,7 @@ public class GamesMenu extends Menu {
     private static final String TIC_TAC_TOE_OPTION_NAME = "Tic Tac Toe";
     private static final String NINE_MEN_MORRIS_OPTION_NAME = "Nine Men Morris";
     private static final String EXIT_OPTION_NAME = "Back";
+	private static final String CHESS_OPTION_NAME = "Chess";
 
     public GamesMenu() {
         super(createMenuItems(), EXIT_OPTION_NAME);
@@ -48,6 +50,10 @@ public class GamesMenu extends Menu {
         Component ticTacToeMenu = new TicTacToeMenu();
         MenuItem ticTacToeMenuItem = new SubmenuItem(TIC_TAC_TOE_OPTION_NAME, ticTacToeMenu);
         gamesMenuItems.add(ticTacToeMenuItem);
+        
+        Component chessMenu = new ChessMenu();
+        MenuItem menuItem = new SubmenuItem(CHESS_OPTION_NAME, chessMenu);
+        gamesMenuItems.add(menuItem);
 
         return gamesMenuItems;
     }
