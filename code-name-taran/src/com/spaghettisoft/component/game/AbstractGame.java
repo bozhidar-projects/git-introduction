@@ -3,8 +3,10 @@ package com.spaghettisoft.component.game;
 import com.spaghettisoft.component.Component;
 
 public abstract class AbstractGame implements Component {
-    @Override
+    
+	@Override
     public void show() {
+		
         while (!isEnded()) {
             drawGame();
             processGame();
