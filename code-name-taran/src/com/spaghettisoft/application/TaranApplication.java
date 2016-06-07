@@ -28,6 +28,9 @@ import com.spaghettisoft.globals.StaticObjects;
 public class TaranApplication {
 
     public static void main(String[] args) {
+
+        System.out.println(
+                "Welcome to the Magic Games of Taran!\n********Do you dare?********");
         Component menu = new MainMenu();
         menu.show();
 

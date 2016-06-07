@@ -26,13 +26,18 @@ import java.util.List;
  * @author bobi
  *
  *
- *         GamesMenu
- *         Menu that contains all games options in project taran.
+ *         GamesMenu Menu that contains all games options in project taran.
  */
 public class GamesMenu extends Menu {
+
+    private static final String CONNECT_THE_FOUR_OPTION_NAME = "Connect The Four";
+
+    private static final String BELOTE_OPTION_NAME = "Belote";
     private static final String TIC_TAC_TOE_OPTION_NAME = "Tic Tac Toe";
     private static final String NINE_MEN_MORRIS_OPTION_NAME = "Nine Men Morris";
-    private static final String CONNECT_THE_FOUR_OPTION_NAME = "Connect The Four";
+    private static final String HANGMAN_OPTION_NAME = "Hangman";
+    private static final String CHECKERS_OPTION_NAME = "Checkers";
+    private static final String DONT_GET_ANGRY_OPTION_NAME = "Don't Get Angry";
     private static final String EXIT_OPTION_NAME = "Back";
 
     public GamesMenu() {
@@ -43,16 +48,42 @@ public class GamesMenu extends Menu {
         List<MenuItem> gamesMenuItems = new ArrayList<>();
 
         Component nineMenMorrisMenu = new NineMenMorrisMenu();
-        MenuItem nineMenMorrisItem = new SubmenuItem(NINE_MEN_MORRIS_OPTION_NAME, nineMenMorrisMenu);
+        MenuItem nineMenMorrisItem = new SubmenuItem(
+                NINE_MEN_MORRIS_OPTION_NAME, nineMenMorrisMenu);
+
         gamesMenuItems.add(nineMenMorrisItem);
 
         Component ticTacToeMenu = new TicTacToeMenu();
-        MenuItem ticTacToeMenuItem = new SubmenuItem(TIC_TAC_TOE_OPTION_NAME, ticTacToeMenu);
+
+        MenuItem ticTacToeMenuItem = new SubmenuItem(TIC_TAC_TOE_OPTION_NAME,
+                ticTacToeMenu);
+
         gamesMenuItems.add(ticTacToeMenuItem);
-        
-        Component connectTheFourMenu = new ConnectTheFourMenu(); 
-        MenuItem connectTheFourItem = new SubmenuItem(CONNECT_THE_FOUR_OPTION_NAME, connectTheFourMenu);
+
+        Component hangmenMenu = new HangmanMenu();
+        MenuItem hangMenuItem = new SubmenuItem(HANGMAN_OPTION_NAME,
+                hangmenMenu);
+        gamesMenuItems.add(hangMenuItem);
+
+        Component beloteMenu = new BeloteMenu();
+        MenuItem beloteMenuItem = new SubmenuItem(BELOTE_OPTION_NAME,
+                beloteMenu);
+        gamesMenuItems.add(beloteMenuItem);
+
+        Component connectTheFourMenu = new ConnectTheFourMenu();
+        MenuItem connectTheFourItem = new SubmenuItem(
+                CONNECT_THE_FOUR_OPTION_NAME, connectTheFourMenu);
         gamesMenuItems.add(connectTheFourItem);
+
+        Component checkersManu = new CheckersMenu();
+        MenuItem checkersMenuItem = new SubmenuItem(CHECKERS_OPTION_NAME,
+                checkersManu);
+        gamesMenuItems.add(checkersMenuItem);
+
+        Component dontGetAngryMenu = new DontGetAngryMenu();
+        MenuItem dontGetAngryMenuItem = new SubmenuItem(
+                DONT_GET_ANGRY_OPTION_NAME, dontGetAngryMenu);
+        gamesMenuItems.add(dontGetAngryMenuItem);
 
         return gamesMenuItems;
     }
