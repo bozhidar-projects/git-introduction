@@ -41,6 +41,7 @@ public class GamesMenu extends Menu {
     private static final String DONT_GET_ANGRY_OPTION_NAME = "Don't Get Angry";
     private static final String EXIT_OPTION_NAME = "Back";
     private static final String CHESS_OPTION_NAME = "Chess";
+    private static final String SIXTY_SIX_OPTION_NAME = "Sixty-six";
 
     public GamesMenu() {
         super(createMenuItems(), EXIT_OPTION_NAME);
@@ -95,6 +96,11 @@ public class GamesMenu extends Menu {
         MenuItem scrabbleMenuItem = new SubmenuItem(SCRABBLE_OPTION_NAME,
                 scrabbleMenu);
         gamesMenuItems.add(scrabbleMenuItem);
+
+        Component sixtySixMenu = new SixtySixMenu();
+        MenuItem sixtySixMenuItem = new SubmenuItem(SIXTY_SIX_OPTION_NAME,
+                sixtySixMenu);
+        gamesMenuItems.add(sixtySixMenuItem);
 
         return gamesMenuItems;
     }
