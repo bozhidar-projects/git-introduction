@@ -31,6 +31,7 @@ import java.util.List;
  */
 public class GamesMenu extends Menu {
 
+    private static final String FOUR_IN_A_ROW_OPTION_NAME = "Four in a Row";
     private static final String CONNECT_THE_FOUR_OPTION_NAME = "Connect The Four";
     private static final String SCRABBLE_OPTION_NAME = "Scrabble";
     private static final String BELOTE_OPTION_NAME = "Belote";
@@ -101,6 +102,11 @@ public class GamesMenu extends Menu {
         MenuItem sixtySixMenuItem = new SubmenuItem(SIXTY_SIX_OPTION_NAME,
                 sixtySixMenu);
         gamesMenuItems.add(sixtySixMenuItem);
+
+        Component fourInARowMenu = new FourInARowMenu();
+        MenuItem fourInARowMenuItem = new SubmenuItem(FOUR_IN_A_ROW_OPTION_NAME,
+                fourInARowMenu);
+        gamesMenuItems.add(fourInARowMenuItem);
 
         return gamesMenuItems;
     }
