@@ -41,12 +41,6 @@ public class Player implements Component
 			index++;
 		}
 
-		if (marriageInHand())
-		{
-			index++;
-			System.out.println(index + ".Announce Marriage");
-		}
-
 		if (isSwitchOptionEnabled())
 		{
 			index++;
@@ -54,58 +48,6 @@ public class Player implements Component
 		}
 
 		System.out.println();
-	}
-
-	private boolean marriageInHand()
-	{
-		PlayingCard[] possibleMarriage = new PlayingCard[Player.PLAYER_HAND_START_SIZE];
-		for (int i = 0; i < hand.length; i++)
-		{
-			possibleMarriage[i] = getKinsAndQueens(hand[i]);
-		}
-
-		int count1 = 0, count2 = 0, count3 = 0, count4 = 0;
-		for (int i = 0; i < possibleMarriage.length; i++)
-		{
-			if (possibleMarriage[i] != null)
-			{
-				switch (possibleMarriage[i].getColor())
-				{
-					case SPADES:
-						count1++;
-						continue;
-
-					case HEARTHS:
-						count2++;
-						continue;
-
-					case DIAMONDS:
-						count3++;
-						continue;
-
-					case CLUBS:
-						count4++;
-						continue;
-				}
-			}
-		}
-
-		if (count1 == 2 || count2 == 2 || count3 == 2 || count4 == 2)
-		{
-			return true;
-		}
-
-		return false;
-	}
-
-	private PlayingCard getKinsAndQueens(PlayingCard playingCard)
-	{
-		if (playingCard.getRank().equals(Rank.KING) || playingCard.getRank().equals(Rank.QUEEN))
-		{
-			return playingCard;
-		}
-
-		return null;
 	}
 
 	private boolean isSwitchOptionEnabled()
@@ -145,6 +87,7 @@ public class Player implements Component
 		if (index < currentHandSize)
 		{
 			PlayingCard temp = hand[index];
+			checkForMarriage(temp);
 			removeCard(index);
 			currentHandSize--;
 			return temp;
@@ -160,18 +103,51 @@ public class Player implements Component
 		return null;
 	}
 
+	private void checkForMarriage(PlayingCard card)
+	{
+		
+		switch (card.getRank())
+		{
+			case QUEEN:
+				if (handContainsMarriage(card, Rank.KING))
+				{
+					if (card.getColor().equals(SixtySix.powerCard))
+					{
+						System.out.println(name + " announces marriage of power!");
+						wonCardsValue += 40;
+					}
+					else {
+						System.out.println(name + " announces marriage!");
+						wonCardsValue += 20;
+					}
+					
+				}
+			case KING:
+				if (handContainsMarriage(card, Rank.QUEEN))
+				{
+					
+				}
+				break;
+			default:
+				return;
+		}
+		
+	}
+
+	private boolean handContainsMarriage(PlayingCard card, Rank rank)
+	{
+		for (int i = 0; i < hand.length; i++)
+		{
+			if (card.getColor().equals(hand[i].getColor()) && hand[i].getRank().equals(rank))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
 	private void AditionalOptions(int index)
 	{
-		if (marriageInHand())
-		{
-			wonCardsValue += 20;
-			if (isPowerMarriage())
-			{
-				wonCardsValue += 20;
-			}
-			return;
-		}
-
 		switchCards();
 	}
 
@@ -201,25 +177,6 @@ public class Player implements Component
 		}
 		hand[i] = null;
 
-	}
-
-	private boolean isPowerMarriage()
-	{
-		boolean queen = false;
-		boolean king = false;
-
-		for (int i = 0; i < hand.length; i++)
-		{
-			if (hand[i].getRank().equals(Rank.QUEEN) && hand[i].getColor().equals(SixtySix.powerCard.getColor()))
-			{
-				queen = true;
-			}
-			if (hand[i].getRank().equals(Rank.KING) && hand[i].getColor().equals(SixtySix.powerCard.getColor()))
-			{
-				queen = true;
-			}
-		}
-		return queen && king;
 	}
 
 	public void setWonHand(PlayingCard first, PlayingCard second)

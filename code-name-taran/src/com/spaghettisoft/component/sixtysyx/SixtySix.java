@@ -11,13 +11,13 @@ public class SixtySix extends SixtySixAbstractGame
 	private Player playerTwo;
 	private Deck deck;
 	public static PlayingCard powerCard;
-	private boolean isGameClosed;
+	private boolean isDeckClosed;
 	private boolean isFirstPlayerHandWinner;
 	private boolean isFirstHand;
 
 	public SixtySix()
 	{
-		isGameClosed = false;
+		isDeckClosed = false;
 		isFirstPlayerHandWinner = true;
 		isFirstHand = true;
 	}
@@ -116,7 +116,7 @@ public class SixtySix extends SixtySixAbstractGame
 
 	private void showCloseOption()
 	{
-		if (isGameClosed || isFirstHand)
+		if (isDeckClosed || isFirstHand)
 		{
 			return;
 		}
@@ -182,7 +182,7 @@ public class SixtySix extends SixtySixAbstractGame
 			firstCard = getCard(playerOne, true);
 		}
 		
-		if (deck.size() < 0 && isGameClosed)
+		if (deck.size() < 0 && isDeckClosed)
 		{
 			isFirstPlayerHandWinner = checkHandWinnerSpecial(firstCard, secondCard);
 		}
@@ -194,11 +194,16 @@ public class SixtySix extends SixtySixAbstractGame
 		
 		if (isFirstPlayerHandWinner)
 		{
+			playerOne.setWonHand(firstCard, secondCard);
 			System.out.println(playerOne.getName() + " wins the hand!");
 		}
 		else {
+			playerTwo.setWonHand(firstCard, secondCard);
 			System.out.println(playerTwo.getName() + " wins the hand!");
 		}
+		
+		System.out.println(playerOne.getName() + " cards won value: " + playerOne.getWonCardsValue());
+		System.out.println(playerTwo.getName() + " cards won value: " + playerTwo.getWonCardsValue());
 		
 		System.out.println("============================");
 	}
@@ -208,6 +213,7 @@ public class SixtySix extends SixtySixAbstractGame
 	{
 		System.out.print(player.getName() + " enter valid option:");
 		int index = StaticObjects.scanner.nextInt();
+		closeDeck(player, isSecond, index);
 		System.out.println();
 		PlayingCard playerCard = player.selectMenuItem(index-1, isSecond);
 		if (playerCard != null)
@@ -215,12 +221,17 @@ public class SixtySix extends SixtySixAbstractGame
 			System.out.println(player.getName() + " plays ");
 			playerCard.show();
 		}
-		if (index == 0)
+		return playerCard;
+	}
+
+	private void closeDeck(Player player, boolean isSecond, int index)
+	{
+		if (index == 0 && !isDeckClosed)
+		
 		{
-			isGameClosed = true;
+			isDeckClosed = true;
 			getCard(player, isSecond);
 		}
-		return playerCard;
 	}
 
 	private boolean checkHandWinner(PlayingCard firstCard, PlayingCard secondCard)
