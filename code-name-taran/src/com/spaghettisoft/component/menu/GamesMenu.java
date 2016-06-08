@@ -32,7 +32,7 @@ import java.util.List;
 public class GamesMenu extends Menu {
 
     private static final String CONNECT_THE_FOUR_OPTION_NAME = "Connect The Four";
-
+    private static final String SCRABBLE_OPTION_NAME = "Scrabble";
     private static final String BELOTE_OPTION_NAME = "Belote";
     private static final String TIC_TAC_TOE_OPTION_NAME = "Tic Tac Toe";
     private static final String NINE_MEN_MORRIS_OPTION_NAME = "Nine Men Morris";
@@ -40,7 +40,8 @@ public class GamesMenu extends Menu {
     private static final String CHECKERS_OPTION_NAME = "Checkers";
     private static final String DONT_GET_ANGRY_OPTION_NAME = "Don't Get Angry";
     private static final String EXIT_OPTION_NAME = "Back";
-	private static final String CHESS_OPTION_NAME = "Chess";
+    private static final String CHESS_OPTION_NAME = "Chess";
+    private static final String SIXTY_SIX_OPTION_NAME = "Sixty-six";
 
     public GamesMenu() {
         super(createMenuItems(), EXIT_OPTION_NAME);
@@ -61,7 +62,7 @@ public class GamesMenu extends Menu {
                 ticTacToeMenu);
 
         gamesMenuItems.add(ticTacToeMenuItem);
-        
+
         Component chessMenu = new ChessMenu();
         MenuItem menuItem = new SubmenuItem(CHESS_OPTION_NAME, chessMenu);
         gamesMenuItems.add(menuItem);
@@ -90,6 +91,16 @@ public class GamesMenu extends Menu {
         MenuItem dontGetAngryMenuItem = new SubmenuItem(
                 DONT_GET_ANGRY_OPTION_NAME, dontGetAngryMenu);
         gamesMenuItems.add(dontGetAngryMenuItem);
+
+        Component scrabbleMenu = new ScrabbleMenu();
+        MenuItem scrabbleMenuItem = new SubmenuItem(SCRABBLE_OPTION_NAME,
+                scrabbleMenu);
+        gamesMenuItems.add(scrabbleMenuItem);
+
+        Component sixtySixMenu = new SixtySixMenu();
+        MenuItem sixtySixMenuItem = new SubmenuItem(SIXTY_SIX_OPTION_NAME,
+                sixtySixMenu);
+        gamesMenuItems.add(sixtySixMenuItem);
 
         return gamesMenuItems;
     }
